@@ -10,7 +10,9 @@ import 'izitoast/dist/css/iziToast.min.css';
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
+  fileExt: false,
 });
+console.log(lightbox);
 
 const formEl = document.querySelector('.search-form');
 const galleryEl = document.querySelector('.gallery');
@@ -28,8 +30,8 @@ function handleSubmit(event) {
   galleryEl.innerHTML = '';
 
   getImagesByQuery(data.message)
-    .then(({ hits }) => {
-      if (hits.length === 0) {
+    .then(({ results }) => {
+      if (results.length === 0) {
         iziToast.info({
           message:
             'Sorry, there are no images matching your search query. Please try again!',
@@ -37,9 +39,10 @@ function handleSubmit(event) {
         return;
       }
 
-      galleryEl.innerHTML = createGalleryMarkup(hits);
+      galleryEl.innerHTML = createGalleryMarkup(results);
 
       lightbox.refresh();
+      console.log(lightbox);
     })
     .catch(err => {
       iziToast.error({

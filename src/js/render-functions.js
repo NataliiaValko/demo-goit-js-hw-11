@@ -1,46 +1,28 @@
 export function createGalleryMarkup(items = []) {
   return items
     .map(
-      ({
-        webformatURL,
-        largeImageURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) => {
-        return `
+      item => `
         <li class="gallery-item">
-          <a href="${largeImageURL}" class="gallery-link">
+          <a href="${item.urls.regular}" class="gallery-link">
             <div class="card-wrapper-img">
               <img
                 class="card-img"
-                src="${webformatURL}"
-                alt="${tags}"
+                src="${item.urls.small}"
+                alt="${item.alt_description}"
               />
             </div>
             <div class="card-info">
               <div class="card-info-colum">
                 <p class="card-info-title">likes</p>
-                <p class="card-info-value">${likes}</p>
+                <p class="card-info-value">${item.likes}</p>
               </div>
               <div class="card-info-colum">
                 <p class="card-info-title">views</p>
-                <p class="card-info-value">${views}</p>
-              </div>
-              <div class="card-info-colum">
-                <p class="card-info-title">comments</p>
-                <p class="card-info-value">${comments}</p>
-              </div>
-              <div class="card-info-colum">
-                <p class="card-info-title">downloads</p>
-                <p class="card-info-value">${downloads}</p>
+                <p class="card-info-value">${item.user.name}</p>
               </div>
             </div>
           </a>
-        </li>`;
-      }
+        </li>`
     )
     .join('');
 }
