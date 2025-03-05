@@ -149,7 +149,6 @@ body {
 .gallery {
   width: 1280px;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   margin-right: auto;
   margin-left: auto;
