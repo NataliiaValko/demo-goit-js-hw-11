@@ -10,8 +10,7 @@ import {
   showLoader,
 } from './js/render-functions';
 
-const formElBtn = document.querySelector('.search-form button');
-const formElInput = document.querySelector('.search-form button');
+const formEl = document.querySelector('.search-form');
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -42,9 +41,8 @@ function handleSubmit(event) {
       });
     })
     .finally(() => {
-      // hideLoader();
+      hideLoader();
     });
 }
 
-formElBtn.addEventListener('click', handleSubmit);
-formElInput.addEventListener('input', handleSubmit);
+formEl.addEventListener('submit', handleSubmit);
