@@ -1,6 +1,7 @@
 import iziToast from 'izitoast';
 
 import { getImagesByQuery } from './js/pixabay-api';
+import icon from './img/icon.svg';
 
 import 'izitoast/dist/css/iziToast.min.css';
 import {
@@ -26,9 +27,18 @@ function handleSubmit(event) {
   getImagesByQuery(data.message)
     .then(({ hits: results }) => {
       if (results.length === 0) {
-        iziToast.info({
+        iziToast.error({
+          position: 'topRight',
           message:
             'Sorry, there are no images matching your search query. Please try again!',
+          maxWidth: '432px',
+          backgroundColor: '#EF4040',
+          messageColor: '#FAFAFB',
+          iconColor: '#FAFAFB',
+          iconUrl: icon,
+          titleSize: '16px',
+          titleLineHeight: '24px',
+          progressBarColor: '#B51B1B',
         });
         return;
       }
@@ -37,7 +47,11 @@ function handleSubmit(event) {
     })
     .catch(err => {
       iziToast.error({
+        position: 'topRight',
         message: 'Error!!!',
+        maxWidth: '432px',
+        titleSize: '16px',
+        titleLineHeight: '24px',
       });
     })
     .finally(() => {
